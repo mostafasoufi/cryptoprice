@@ -30,7 +30,7 @@ abstract class ServiceAbstract
     /**
      * @param $url
      * @param $method
-     * @return Client
+     * @return Client|mixed|\Psr\Http\Message\ResponseInterface
      * @throws GuzzleException
      */
     public function sendRequest($url, $method = self::GET)

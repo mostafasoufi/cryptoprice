@@ -9,22 +9,24 @@ namespace CryptoPrice\Service;
 interface ServiceInterface
 {
     /**
+     * @param $currency
      * @return mixed
      */
-    public function getBitcoin();
+    public function setCrypto($currency);
 
     /**
      * @return mixed
      */
-    public function getEthereum();
+    public function getSymbol();
 
     /**
      * @return mixed
      */
-    public function getRipple();
+    public function getUSDPrice();
 
     /**
+     * @param $symbol
      * @return mixed
      */
-    public function getTether();
+    public function getUSDPriceBYSymbol($symbol);
 }

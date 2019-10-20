@@ -2,6 +2,9 @@
 
 namespace CryptoPrice\Service;
 
+use CryptoPrice\Symbol\Binance as BinanceSymbol;
+use Exception;
+
 /**
  * Class Binance
  * @package CryptoPrice\Service
@@ -12,6 +15,16 @@ class Binance extends ServiceAbstract implements ServiceInterface
      * @var array
      */
     private $data = [];
+
+    /***
+     * @var string
+     */
+    private $currency;
+
+    /***
+     * @var string
+     */
+    private $symbol;
 
     /**
      * Binance constructor.
@@ -28,34 +41,49 @@ class Binance extends ServiceAbstract implements ServiceInterface
     }
 
     /**
-     * @return mixed|void
+     * @param $currency
+     * @return $this
+     * @throws Exception
      */
-    public function getBitcoin()
+    public function setCrypto($currency)
     {
-        return $this->data['BTCTUSD'];
+        $this->currency = strtolower($currency);
+
+        // Set symbol.
+        if (null == $this->symbol = BinanceSymbol::get($this->currency)) {
+            throw new Exception('Symbol is not valid.');
+        }
+        
+        return $this;
     }
 
     /**
-     * @return int|mixed
+     * @return string
      */
-    public function getEthereum()
+    public function getSymbol()
     {
-        return $this->data['ETHTUSD'];
+        return $this->symbol;
     }
 
     /**
-     * @return int|mixed
+     * @return mixed
      */
-    public function getRipple()
+    public function getUSDPrice()
     {
-        return $this->data['XRPTUSD'];
+        return $this->data[$this->symbol];
     }
 
     /**
-     * @return int|mixed
+     * @param $symbol
+     * @return mixed
+     * @throws Exception
      */
-    public function getTether()
+    public function getUSDPriceBYSymbol($symbol)
     {
-        return $this->data['TUSDUSDT'];
+        if (empty($this->data[$symbol])) {
+            throw new Exception('Symbol is not valid.');
+        }
+
+        return $this->data[$symbol];
     }
 }

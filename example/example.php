@@ -10,16 +10,6 @@ use CryptoPrice\Service\CoinMarketCap;
 $Binance = new CryptoPrice(new Binance());
 
 echo 'Binance Prices:' . PHP_EOL;
-echo '<pre>' . print_r($Binance->getBitcoin(), 1) . '</pre>';
-echo '<pre>' . print_r($Binance->getRipple(), 1) . '</pre>';
-echo '<pre>' . print_r($Binance->getTether(), 1) . '</pre>';
-echo '<pre>' . print_r($Binance->getEthereum(), 1) . '</pre>';
-
-// Initial CryptoPrice class.
-$CoinMarketCap = new CryptoPrice(new CoinMarketCap());
-
-echo 'Coin Market Cap Prices:' . PHP_EOL;
-echo '<pre>' . print_r($CoinMarketCap->getBitcoin(), 1) . '</pre>';
-echo '<pre>' . print_r($CoinMarketCap->getRipple(), 1) . '</pre>';
-echo '<pre>' . print_r($CoinMarketCap->getTether(), 1) . '</pre>';
-echo '<pre>' . print_r($CoinMarketCap->getEthereum(), 1) . '</pre>';
+echo '<pre>'.print_r($Binance->setCrypto('Bitcoin')->getSymbol(), 1).'</pre>';
+echo '<pre>'.print_r($Binance->setCrypto('Bitcoin')->getUSDPrice(), 1).'</pre>';
+echo '<pre>'.print_r($Binance->getUSDPriceBYSymbol('ETHBTC'), 1).'</pre>';

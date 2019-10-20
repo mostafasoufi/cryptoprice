@@ -3,6 +3,7 @@
 namespace CryptoPrice;
 
 use CryptoPrice\Service\ServiceInterface;
+use Exception;
 
 /**
  * Class CryptoPrice
@@ -28,14 +29,14 @@ class CryptoPrice
      * @param $name
      * @param $arguments
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function __call($name, $arguments)
     {
         if (!method_exists($this->service, $name)) {
-            throw new \Exception('Method is not available.');
+            throw new Exception('Method is not available.');
         }
 
-        return $this->service->$name();
+        return call_user_func_array(array($this->service, $name), $arguments);
     }
 }
