@@ -4,6 +4,7 @@ namespace CryptoPrice\Service;
 
 use CryptoPrice\Symbol\Binance as BinanceSymbol;
 use Exception;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Class Binance
@@ -28,6 +29,7 @@ class Binance extends ServiceAbstract implements ServiceInterface
 
     /**
      * Binance constructor.
+     * @throws GuzzleException
      */
     public function __construct()
     {

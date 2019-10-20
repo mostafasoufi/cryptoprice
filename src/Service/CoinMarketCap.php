@@ -2,6 +2,10 @@
 
 namespace CryptoPrice\Service;
 
+use CryptoPrice\Symbol\CoinMarketCap as CoinMarketCapSymbol;
+use Exception;
+use GuzzleHttp\Exception\GuzzleException;
+
 /**
  * Class CoinMarketCap
  * @package CryptoPrice\Service
@@ -13,8 +17,19 @@ class CoinMarketCap extends ServiceAbstract implements ServiceInterface
      */
     private $data = [];
 
+    /***
+     * @var string
+     */
+    private $currency;
+
+    /***
+     * @var string
+     */
+    private $symbol;
+
     /**
-     * Binance constructor.
+     * CoinMarketCap constructor.
+     * @throws GuzzleException
      */
     public function __construct()
     {
@@ -28,34 +43,49 @@ class CoinMarketCap extends ServiceAbstract implements ServiceInterface
     }
 
     /**
-     * @return mixed|void
+     * @param $currency
+     * @return $this
+     * @throws Exception
      */
-    public function getBitcoin()
+    public function setCrypto($currency)
     {
-        return $this->data['BTC'];
+        $this->currency = strtolower($currency);
+
+        // Set symbol.
+        if (null == $this->symbol = CoinMarketCapSymbol::get($this->currency)) {
+            throw new Exception('Symbol is not valid.');
+        }
+
+        return $this;
     }
 
     /**
-     * @return int|mixed
+     * @return string
      */
-    public function getEthereum()
+    public function getSymbol()
     {
-        return $this->data['ETH'];
+        return $this->symbol;
     }
 
     /**
-     * @return int|mixed
+     * @return mixed
      */
-    public function getRipple()
+    public function getUSDPrice()
     {
-        return $this->data['XRP'];
+        return $this->data[$this->symbol];
     }
 
     /**
-     * @return int|mixed
+     * @param $symbol
+     * @return mixed
+     * @throws Exception
      */
-    public function getTether()
+    public function getUSDPriceBYSymbol($symbol)
     {
-        return $this->data['USDT'];
+        if (empty($this->data[$symbol])) {
+            throw new Exception('Symbol is not valid.');
+        }
+
+        return $this->data[$symbol];
     }
 }

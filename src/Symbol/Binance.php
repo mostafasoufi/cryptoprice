@@ -16,7 +16,10 @@ class Binance
     {
         $symbols = [
             'bitcoin' => 'BTCTUSD',
-            'ripple' => 'XRP',
+            'ethereum' => 'ETHTUSD',
+            'ripple' => 'XRPTUSD',
+            'tether' => 'TUSDUSDT',
+            // TODO should be complete from https://api.binance.com/api/v3/ticker/price
         ];
 
         return isset($symbols[$symbol]) ? $symbols[$symbol] : null;
