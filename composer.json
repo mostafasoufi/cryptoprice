@@ -1,0 +1,20 @@
+{
+    "name": "mostafasoufi/cryptoprice",
+    "description": "Getting Cryptocurrency Prices",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mostafa Soufi",
+            "email": "mostafa.soufi@hotmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "CryptoPrice\\": "src/"
+        }
+    }
+}
