@@ -53,3 +53,10 @@ Getting USD price by symbol
 $Binance->getUSDPriceBYSymbol('BTCTUSD');
 $CoinMarketCap->getUSDPriceBYSymbol('BTC');
 ```
+
+## Running Tests
+
+To run the unit tests, execute the following command:
+```bash
+vendor\bin\phpunit
+```
