@@ -13,7 +13,7 @@ The recommended way to install CryptoPrice is through [Composer](http://getcompo
 Run the Composer command to install the latest stable version:
 
 ```bash
-php composer.phar require mostafasoufi/cryptoprice
+composer require mostafasoufi/cryptoprice
 ```
 
 After installing, you need to require Composer's autoloader:
