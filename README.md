@@ -58,5 +58,5 @@ $CoinMarketCap->getUSDPriceBYSymbol('BTC');
 
 To run the unit tests, execute the following command:
 ```bash
-vendor\bin\phpunit
+vendor/bin/phpunit
 ```
